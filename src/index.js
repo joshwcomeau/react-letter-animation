@@ -74,7 +74,13 @@ class LetterDemo extends Component {
 
     return (
       <div className="letter-demo">
-        <FlipMove {...animations} onStart={this.onStart}>
+        <FlipMove
+          duration={750}
+          easing='ease'
+          onStart={this.onStart}
+          {...animations}
+          {...this.props}
+        >
           {this.renderLetters()}
         </FlipMove>
       </div>

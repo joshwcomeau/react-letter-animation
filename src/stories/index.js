@@ -1,21 +1,17 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import Button from '../index';
+import LetterDemo from '../index';
 
-storiesOf('Button', module)
+storiesOf('Letter Demo', module)
   .add('default view', () => (
-    <Button onClick={ action('button clicked') }>Hello</Button>
+    <LetterDemo />
   ))
-  .add('some emojies as the text', () => (
-    <Button>😀 😎 👍 💯</Button>
+  .add('with staggered duration', () => (
+    <LetterDemo staggerDurationBy={20} />
   ))
-  .add('custom styles', () => {
-    const style = {
-      fontSize: 20,
-      textTransform: 'uppercase',
-      color: '#FF8833',
-    };
-    return (
-      <Button style={ style }>Hello</Button>
-    );
-  });
+  .add('with staggered delay', () => (
+    <LetterDemo staggerDelayBy={20} />
+  ))
+  .add('with accordian enter/exit', () => (
+    <LetterDemo enterAnimation='accordionHorizontal' leaveAnimation='accordionHorizontal' staggerDelayBy={20} />
+  ));
