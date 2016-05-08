@@ -1,27 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
+import random from 'lodash/random';
+import sampleSize from 'lodash/sampleSize';
 
-const buttonStyles = {
-  border: '1px solid #eee',
-  borderRadius: 3,
-  backgroundColor: '#FFFFFF',
-  cursor: 'pointer',
-  fontSize: 15,
-  padding: '3px 10px',
-};
+import './styles.scss';
 
-const Button = ({ children, onClick, style = {} }) => (
-  <button
-    style={{ ...buttonStyles, ...style }}
-    onClick={onClick}
-  >
-    {children}
-  </button>
-);
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-Button.propTypes = {
-  children: React.PropTypes.string.isRequired,
-  onClick: React.PropTypes.func,
-  style: React.PropTypes.object,
-};
+function getSubsetOfAlphabet() {
+  const numToPick = random(1, 26);
+  return sampleSize(alphabet, numToPick).sort();
+}
 
-export default Button;
+class LetterDemo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      letters: getSubsetOfAlphabet(),
+    };
+  }
+
+  componentWillMount() {
+    this.interval = window.setInterval(() => {
+      this.setState({
+        letters: getSubsetOfAlphabet(),
+      });
+    }, 1500);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.interval);
+  }
+
+  render() {
+    return (
+      <div className="letter-demo">
+        {this.state.letters.join('')}
+      </div>
+    );
+  }
+}
+
+export default LetterDemo;
