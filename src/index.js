@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import random from 'lodash/random';
 import sampleSize from 'lodash/sampleSize';
+import FlipMove from 'react-flip-move';
 
 import './styles.scss';
 
@@ -31,10 +32,18 @@ class LetterDemo extends Component {
     window.clearInterval(this.interval);
   }
 
+  renderLetters() {
+    return this.state.letters.map(letter => (
+      <span key={letter}>{letter}</span>
+    ))
+  }
+
   render() {
     return (
       <div className="letter-demo">
-        {this.state.letters.join('')}
+        <FlipMove>
+          {this.renderLetters()}
+        </FlipMove>
       </div>
     );
   }
