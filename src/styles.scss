@@ -1,0 +1,20 @@
+.letter-demo {
+  padding: 3rem;
+
+  span {
+    display: inline-block;
+    letter-spacing: 2px;
+    font-family: monospace;
+    font-weight: 500;
+    font-size: 24px;
+  }
+
+  .enter {
+    color: green;
+  }
+
+  .leave {
+    color: brown;
+  }
+
+}
