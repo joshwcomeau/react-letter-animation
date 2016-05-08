@@ -50,7 +50,9 @@
   },
   "dependencies": {
     "babel-runtime": "^6.5.0",
+    "css-loader": "^0.23.1",
     "lodash": "^4.11.2",
+    "node-sass": "^3.7.0",
     "react-flip-move": "^2.2.0",
     "sass-loader": "^3.2.0"
   },
