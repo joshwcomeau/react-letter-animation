@@ -16,7 +16,7 @@ class LetterDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      letters: getSubsetOfAlphabet(),
+      letters: alphabet,
     };
   }
 
@@ -25,17 +25,27 @@ class LetterDemo extends Component {
       this.setState({
         letters: getSubsetOfAlphabet(),
       });
-    }, 1500);
+    }, 2000);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.interval);
   }
 
+  onStart({ entering, leaving }, node) {
+    if (entering) {
+      node.classList.add('enter');
+    } else if (leaving) {
+      node.classList.add('leave');
+    } else {
+      node.classList.remove('enter', 'leave');
+    }
+  }
+
   renderLetters() {
     return this.state.letters.map(letter => (
       <span key={letter}>{letter}</span>
-    ))
+    ));
   }
 
   render() {
@@ -64,7 +74,7 @@ class LetterDemo extends Component {
 
     return (
       <div className="letter-demo">
-        <FlipMove {...animations}>
+        <FlipMove {...animations} onStart={this.onStart}>
           {this.renderLetters()}
         </FlipMove>
       </div>
