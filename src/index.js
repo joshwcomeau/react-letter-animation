@@ -39,9 +39,32 @@ class LetterDemo extends Component {
   }
 
   render() {
+    const animations = {
+      enterAnimation: {
+        from: {
+          transform: 'translateY(-30px)',
+          opacity: 0,
+        },
+        to: {
+          transform: 'translateY(0)',
+          opacity: 1,
+        },
+      },
+      leaveAnimation: {
+        from: {
+          transform: 'translateY(0)',
+          opacity: 1,
+        },
+        to: {
+          transform: 'translateY(30px)',
+          opacity: 0,
+        },
+      },
+    };
+
     return (
       <div className="letter-demo">
-        <FlipMove>
+        <FlipMove {...animations}>
           {this.renderLetters()}
         </FlipMove>
       </div>
